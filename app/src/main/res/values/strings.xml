@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">AAHAR(Customer)</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_calender">Calender</string>
+    <string name="menu_mess">DMess</string>
+    <string name="menu_notification">Notification</string>
+    <string name="menu_remainder">Remainder</string>
+    <string name="menu_attendance">Attendance</string>
+    <string name="menu_addmess">Add Mess</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="join_mess">Join a new mess</string>
+    <string name="enter_code">Enter the code</string>
+    <string name="join_button">Join</string>
+    <string name="signedas">You are signed in as</string>
+
+    <!--    Join Activity-->
+    <string name="welcome_to_digital_mess">Welcome to Digital Mess</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="loginText">I want to Login</string>
+    <string name="signInText">I want to Sign Up</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="team_ameya_s_project">Team Ameya\'s Project</string>
+    <string name="food_quote">दीपो भक्षयते ध्वान्तं</string>
+    <string name="notifications">Notifications</string>
+
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
