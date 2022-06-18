@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
+            android:name=".ui.explore.Explore"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SigninActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.SignUpActivity"
             android:exported="false"
-            android:theme="@style/Theme.EndUser.NoActionBar"/>
+            android:theme="@style/Theme.EndUser.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true"
@@ -27,6 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

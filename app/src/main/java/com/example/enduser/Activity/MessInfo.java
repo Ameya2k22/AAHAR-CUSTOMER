@@ -1,7 +1,7 @@
 package com.example.enduser.Activity;
 
 public class MessInfo {
-    private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes;
+    private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes, ratings;
 
     public MessInfo(){}
     public MessInfo(String owner_name, String mess_name, String mess_location, String mess_email, String monthlyPrice, String specialDishes) {
@@ -11,6 +11,15 @@ public class MessInfo {
         this.mess_location = mess_location;
         this.monthlyPrice = monthlyPrice;
         this.specialDishes = specialDishes;
+        this.ratings = "0";
+    }
+
+    public String getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(String ratings) {
+        this.ratings = ratings;
     }
 
     public String getOwner_name() {
