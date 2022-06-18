@@ -6,13 +6,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_aahar"
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
+<<<<<<< HEAD
             android:name=".ui.explore.Explore"
             android:exported="false" />
         <activity
+=======
+<<<<<<< HEAD
+            android:name=".Activity.SplashScreen"
+            android:exported="true" >
+
+=======
+>>>>>>> d1c73a15a860a2662ee8f893142f9b5229c96f32
             android:name=".Activity.SigninActivity"
             android:exported="false" />
         <activity
@@ -24,11 +32,19 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.EndUser.NoActionBar">
+>>>>>>> 337f3be8811928244205ad1c2aca55c440f7b447
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".Activity.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.EndUser.NoActionBar">
         </activity>
 
         <meta-data
