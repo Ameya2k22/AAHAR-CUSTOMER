@@ -28,4 +28,10 @@
         android:name="com.example.enduser.ui.addMess.AddMessFragment"
         android:label="@string/menu_addmess"
         tools:layout="@layout/fragment_add_mess" />
+
+    <fragment
+        android:id="@+id/nav_addmenu"
+        android:name="com.example.enduser.ui.addMenu.AddMenuFragment"
+        android:label="@string/menu_addmenu"
+        tools:layout="@layout/fragment_add_menu"/>
 </navigation>
