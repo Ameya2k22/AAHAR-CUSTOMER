@@ -10,19 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
-<<<<<<< HEAD
-            android:name=".ui.explore.Explore"
+            android:name=".Activity.SplashScreen"
             android:exported="false" />
         <activity
-=======
-<<<<<<< HEAD
-            android:name=".Activity.SplashScreen"
-            android:exported="true" >
-
-=======
->>>>>>> d1c73a15a860a2662ee8f893142f9b5229c96f32
             android:name=".Activity.SigninActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Activity.SignUpActivity"
             android:exported="false"
@@ -32,7 +24,6 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.EndUser.NoActionBar">
->>>>>>> 337f3be8811928244205ad1c2aca55c440f7b447
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,13 +31,6 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".Activity.MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.EndUser.NoActionBar">
-        </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
