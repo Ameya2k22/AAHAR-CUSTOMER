@@ -71,20 +71,6 @@ public class AttendanceFragment extends Fragment {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snapshot1:snapshot.getChildren()){
-                    Customer customer = snapshot1.getValue(Customer.class);
-                    Toast.makeText(getActivity(), customer.getName(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         return root;
     }
 

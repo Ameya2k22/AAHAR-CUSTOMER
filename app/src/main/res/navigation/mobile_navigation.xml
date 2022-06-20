@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_attendance" />
 
     <fragment
+        android:id="@+id/nav_student"
+        android:name="com.example.enduser.ui.student.StudentFragment"
+        android:label="Student"
+        tools:layout="@layout/fragment_student" />
+
+    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.enduser.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
