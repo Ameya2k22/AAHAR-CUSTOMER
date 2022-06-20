@@ -20,7 +20,7 @@
         android:minWidth="80dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/mess" />
+        android:src="@drawable/aahar_logo" />
 
     <TextView
         android:layout_width="match_parent"
