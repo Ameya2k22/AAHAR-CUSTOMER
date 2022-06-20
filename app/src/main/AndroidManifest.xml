@@ -11,10 +11,16 @@
         android:theme="@style/Theme.EndUser">
         <activity
             android:name=".Activity.SplashScreen"
-            android:exported="false" />
+            android:exported="true" />
+        
         <activity
+<<<<<<< HEAD
             android:name=".Activity.SignUpActivity"
             android:exported="false"/>
+=======
+            android:name=".Activity.SigninActivity"
+            android:exported="false" />
+>>>>>>> origin
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false"
@@ -31,6 +37,7 @@
             </intent-filter>
 
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

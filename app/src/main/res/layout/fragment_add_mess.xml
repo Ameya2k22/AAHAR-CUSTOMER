@@ -4,76 +4,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/curve_bg_2"
     tools:context=".ui.addMess.AddMessFragment">
 
-    <EditText
-        android:id="@+id/ownerName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:hint="Enter Mess Owner"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/messName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter Name of the mess"
-        app:layout_constraintTop_toBottomOf="@+id/ownerName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/ownerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Your Name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/messLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter Location"
-        app:layout_constraintTop_toBottomOf="@+id/messName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/messName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Mess Name"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/messEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter Mess Email"
-        app:layout_constraintTop_toBottomOf="@+id/messLocation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <EditText
+            android:id="@+id/messLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Mess Address"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/monthlyPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter Monthly Price"
-        app:layout_constraintTop_toBottomOf="@id/messEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/messEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Mess Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/specialDishes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="Enter special Dishes"
-        app:layout_constraintTop_toBottomOf="@id/monthlyPrice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/monthlyPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Monthly Price"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/create"
+        <EditText
+            android:id="@+id/specialDishes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32sp"
+            android:background="@drawable/text_box"
+            android:fontFamily="sans-serif"
+            android:hint="Enter Special Dishes"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/create"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_box"
+            android:fontFamily="sans-serif"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:padding="16dp"
+            android:text="Create"
+            android:textColor="@color/green"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/messImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Create"
-        app:layout_constraintTop_toBottomOf="@id/specialDishes"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/aahar_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
