@@ -10,11 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.enduser.Activity.MessInfo;
-import com.example.enduser.R;
+import com.example.enduser.UtitlityClasses.MessInfo;
 import com.example.enduser.databinding.FragmentAddMessBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

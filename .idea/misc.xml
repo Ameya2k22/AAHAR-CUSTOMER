@@ -25,6 +25,27 @@
         <entry key="..\:/ACM Hackathon/CustomerView/app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
         <entry key="..\:/ACM Hackathon/CustomerView/app/src/main/res/layout/nav_header_main.xml" value="0.1796875" />
         <entry key="..\:/ACM Hackathon/CustomerView/app/src/main/res/menu/activity_main_drawer.xml" value="0.22" />
+<<<<<<< HEAD
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_add_mess.xml" value="0.1793478260869565" />
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_home.xml" value="0.1793478260869565" />
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_slideshow.xml" value="0.1793478260869565" />
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_student.xml" value="0.1793478260869565" />
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/student_list.xml" value="0.1793478260869565" />
+        <entry key="..\:/Ameya/Customer/AAHAR-CUSTOMER/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+=======
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/activity_all_users.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/activity_otp_verification.xml" value="0.24010416666666667" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/activity_sign_up.xml" value="0.1793478260869565" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/activity_signin.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_add_mess.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_attendance.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/fragment_slideshow.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/single_mess_layout.xml" value="0.176" />
+        <entry key="..\:/AndroidStudioProjects/AAHAR/Git Pull/Customer/AAHAR-CUSTOMER/app/src/main/res/layout/single_user_activity.xml" value="0.25416666666666665" />
+>>>>>>> origin
         <entry key="..\:/Pratham Yadav/Apps/AAHAR-CUSTOMER/app/src/main/res/drawable-v24/circle.xml" value="0.1975" />
         <entry key="..\:/Pratham Yadav/Apps/AAHAR-CUSTOMER/app/src/main/res/drawable/ic_comments.xml" value="0.1975" />
         <entry key="..\:/Pratham Yadav/Apps/AAHAR-CUSTOMER/app/src/main/res/drawable/ic_home.xml" value="0.1975" />

@@ -1,4 +1,4 @@
-package com.example.enduser.Activity;
+package com.example.enduser.UtitlityClasses;
 
 public class MessInfo {
     private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes, ratings;
