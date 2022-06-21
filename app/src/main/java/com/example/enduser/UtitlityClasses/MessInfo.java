@@ -1,10 +1,18 @@
 package com.example.enduser.UtitlityClasses;
 
 public class MessInfo {
-    private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes, ratings;
+    private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes, ratings, phone_no;
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
 
     public MessInfo(){}
-    public MessInfo(String owner_name, String mess_name, String mess_location, String mess_email, String monthlyPrice, String specialDishes) {
+    public MessInfo(String owner_name, String mess_name, String mess_location, String mess_email, String monthlyPrice, String specialDishes, String phone_no) {
         this.owner_name = owner_name;
         this.mess_name = mess_name;
         this.mess_email = mess_email;
@@ -12,6 +20,7 @@ public class MessInfo {
         this.monthlyPrice = monthlyPrice;
         this.specialDishes = specialDishes;
         this.ratings = "0";
+        this.phone_no = phone_no;
     }
 
     public String getRatings() {

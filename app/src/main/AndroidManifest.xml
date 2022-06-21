@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
+            android:name=".Activity.SignUpActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Activity.AllUsersActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.SignUpActivity"
-            android:exported="false"/>
+
         <activity
             android:name=".Activity.SigninActivity"
             android:exported="true" />
