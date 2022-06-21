@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class AttendanceFragment extends Fragment {
 
     private FragmentAttendanceBinding binding;
@@ -39,8 +41,7 @@ public class AttendanceFragment extends Fragment {
         startSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = auth.getUid();
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){

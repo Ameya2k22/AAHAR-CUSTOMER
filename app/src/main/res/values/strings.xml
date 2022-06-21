@@ -66,4 +66,17 @@
     <string name="complaints_and_reviews">Complaints and Reviews</string>
     <string name="ratings">Ratings</string>
     <string name="price_per_month">Price per month :</string>
+    <string name="total_count">Total Count</string>
+    <string name="mess_info">Mess Info</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="enter_mess_name">Enter Mess Name</string>
+    <string name="enter_mess_address">Enter Mess Address</string>
+    <string name="enter_mess_email">Enter Mess Email</string>
+    <string name="enter_monthly_price">Enter Monthly Price</string>
+    <string name="enter_special_dishes">Enter Special Dishes</string>
+    <string name="create">Create</string>
+    <string name="total_customers">Total customers :</string>
+    <string name="total_reviews">Total Reviews :</string>
+    <string name="overall_rating">Overall Rating :</string>
+    <string name="mess_image">Mess Image</string>
 </resources>
