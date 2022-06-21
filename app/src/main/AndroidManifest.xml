@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
-<<<<<<< HEAD
             android:name=".Activity.SignUpActivity"
             android:exported="false" />
         
@@ -19,18 +18,10 @@
             android:exported="false"/>
 
         <activity
-=======
             android:name=".Activity.AllUsersActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.SignUpActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".Activity.SigninActivity"
-            android:exported="true" />
         
         <activity
->>>>>>> d359ca88cdee2692354869b98ea033a1417a5de7
             android:name=".Activity.OtpVerificationActivity"
             android:exported="false"/>
 
