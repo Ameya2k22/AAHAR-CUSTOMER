@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SignUpActivity">
 
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/headerbg"
+        android:background="@drawable/header_bg_1"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="@string/welcome_user"
             android:textColor="#fff"
-            android:textSize="32sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -62,7 +62,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+             />
 
         <EditText
             android:id="@+id/reg_email"
@@ -79,7 +79,7 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            />
 
 
         <EditText
@@ -97,7 +97,7 @@
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            />
 
         <EditText
             android:id="@+id/reg_password"
@@ -114,18 +114,19 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+             />
 
         <Button
             android:id="@+id/reg_submit"
-            android:layout_width="200dp"
+            android:layout_width="120dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:fontFamily="sans-serif"
             android:text="@string/sign_up"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
 

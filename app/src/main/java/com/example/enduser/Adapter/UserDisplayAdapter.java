@@ -37,9 +37,9 @@ public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.
         UserDisplayModel user = list.get(position);
 
         holder.binding.name.setText(user.getName());
-        holder.binding.mobile.setText(user.getMobile());
-        holder.binding.mobile.setText(user.getEmail());
-        holder.binding.userProfileImage.setImageResource(user.getImage());
+        holder.binding.mobile.setText(user.getPhone_no());
+        holder.binding.email.setText(user.getEmail());
+//        holder.binding.userProfileImage.setImageResource(user.getImage());
 
         holder.binding.attendancebtn.setOnClickListener(v -> {
             ShowAttendance();

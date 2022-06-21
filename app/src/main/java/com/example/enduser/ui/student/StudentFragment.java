@@ -7,17 +7,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import com.example.enduser.Adapter.UserDisplayAdapter;
+import com.example.enduser.Models.UserDisplayModel;
+import com.example.enduser.UtitlityClasses.Customer;
+=======
+>>>>>>> d359ca88cdee2692354869b98ea033a1417a5de7
+>>>>>>> origin
 import com.example.enduser.Activity.User;
 import com.example.enduser.Adapter.StudentAdapter;
-import com.example.enduser.R;
 import com.example.enduser.StudentInfo;
-import com.example.enduser.databinding.FragmentAttendanceBinding;
 import com.example.enduser.databinding.FragmentStudentBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -36,8 +41,8 @@ public class StudentFragment extends Fragment {
 
     private FragmentStudentBinding binding;
     RecyclerView recyclerView;
-    StudentAdapter studentAdapter;
-    ArrayList<User> studentList;
+    UserDisplayAdapter userDisplayAdapter;
+    ArrayList<UserDisplayModel> studentList;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +56,13 @@ public class StudentFragment extends Fragment {
 
         recyclerView = binding.Recyclerview;
         studentList = new ArrayList<>();
-        studentAdapter = new StudentAdapter(studentList, getActivity());
+//        studentAdapter = new StudentAdapter(studentList, getActivity());
+        userDisplayAdapter = new UserDisplayAdapter(studentList, getActivity());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        recyclerView.setAdapter(studentAdapter);
+        recyclerView.setAdapter(userDisplayAdapter);
 
         String id = FirebaseAuth.getInstance().getUid();
 
@@ -70,9 +76,9 @@ public class StudentFragment extends Fragment {
                         FirebaseDatabase.getInstance().getReference().child("EndUser").child("Details").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                User user = snapshot.getValue(User.class);
-                                studentList.add(user);
-                                studentAdapter.notifyDataSetChanged();
+                                UserDisplayModel userDisplayModel = snapshot.getValue(UserDisplayModel.class);
+                                studentList.add(userDisplayModel);
+                                userDisplayAdapter.notifyDataSetChanged();
                             }
 
                             @Override
