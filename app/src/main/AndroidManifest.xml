@@ -10,32 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EndUser">
         <activity
-            android:name=".Activity.SplashScreen"
-<<<<<<< HEAD
+            android:name=".Activity.AllUsersActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.SignUpActivity"
             android:exported="false"/>
         <activity
             android:name=".Activity.SigninActivity"
-=======
             android:exported="true" />
         
         <activity
-<<<<<<< HEAD
-            android:name=".Activity.SignUpActivity"
+            android:name=".Activity.OtpVerificationActivity"
             android:exported="false"/>
-=======
-            android:name=".Activity.SigninActivity"
-            android:exported="false" />
->>>>>>> origin
+
         <activity
             android:name=".Activity.MainActivity"
->>>>>>> 28405d7d6e57ad1dd75b6a2391a9f4eb2a07a0a0
             android:exported="false"
             android:theme="@style/Theme.EndUser.NoActionBar" />
+
         <activity
-            android:name=".Activity.SigninActivity"
+            android:name=".Activity.SplashScreen"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.EndUser.NoActionBar">
