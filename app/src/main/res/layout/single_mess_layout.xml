@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -14,12 +16,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/curve_bg_1">
+            android:background="@drawable/mess_card_bg">
 
             <View
                 android:id="@+id/view2"
@@ -46,22 +49,20 @@
                 android:id="@+id/MessName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/oswald"
                 android:text="Aster Mess"
                 android:textColor="@color/sky_blue"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteX="189dp"
+                tools:layout_editor_absoluteY="50dp" />
 
             <TextView
                 android:id="@+id/Location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="233dp"
+                android:layout_height="53dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/oswald"
                 android:gravity="left"
@@ -69,29 +70,31 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toBottomOf="@+id/MessName" />
+                app:layout_constraintTop_toBottomOf="@+id/MessName"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
+
                 app:cardElevation="8dp"
-                app:cardCornerRadius="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Location"
-                app:layout_constraintTop_toBottomOf="@+id/Location">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <RatingBar
                     android:id="@+id/ratingBar"
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="@drawable/black_bg"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/black"
-                    android:progressTint="@color/green"
+                    android:progressTint="@color/dark_orange"
                     android:rating="3" />
 
             </androidx.cardview.widget.CardView>
