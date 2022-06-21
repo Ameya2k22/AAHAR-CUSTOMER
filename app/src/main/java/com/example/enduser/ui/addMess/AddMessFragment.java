@@ -52,18 +52,6 @@ public class AddMessFragment extends Fragment {
         final EditText specialDishes = binding.specialDishes;
         final Button create = binding.create;
         auth = FirebaseAuth.getInstance();
-
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                phone = snapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,28 +59,33 @@ public class AddMessFragment extends Fragment {
                 FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        phone = snapshot.getValue(String.class);
-                        String ownerName_val = ownerName.getText().toString();
-                        String messName_val = messName.getText().toString();
-                        String location_val = location.getText().toString();
-                        String messEmail_val = messEmail.getText().toString();
-                        String monthlyPrice_val = monthlyPrice.getText().toString();
-                        String specialDishes_val = specialDishes.getText().toString();
+                        if(snapshot.exists()){
+                            phone = snapshot.getValue(String.class);
+                            String ownerName_val = ownerName.getText().toString();
+                            String messName_val = messName.getText().toString();
+                            String location_val = location.getText().toString();
+                            String messEmail_val = messEmail.getText().toString();
+                            String monthlyPrice_val = monthlyPrice.getText().toString();
+                            String specialDishes_val = specialDishes.getText().toString();
 
-                        if(ownerName_val.isEmpty() || messName_val.isEmpty() || location_val.isEmpty() || messEmail_val.isEmpty() || monthlyPrice_val.isEmpty() || specialDishes_val.isEmpty()){
-                            Toast.makeText(getActivity(), "Fill Information Properly", Toast.LENGTH_SHORT).show();
+                            if(ownerName_val.isEmpty() || messName_val.isEmpty() || location_val.isEmpty() || messEmail_val.isEmpty() || monthlyPrice_val.isEmpty() || specialDishes_val.isEmpty()){
+                                Toast.makeText(getActivity(), "Fill Information Properly", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
+                                String id = auth.getUid();
+                                FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").child(id).setValue(messInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
                         }
                         else{
-                            MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
-                            String id = auth.getUid();
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").child(id).setValue(messInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                            Toast.makeText(getActivity(), "You Cannot create a mess", Toast.LENGTH_SHORT).show();
                         }
                     }
 

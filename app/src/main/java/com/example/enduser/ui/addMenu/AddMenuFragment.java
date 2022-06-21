@@ -19,7 +19,10 @@ import com.example.enduser.databinding.FragmentAddMenuBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddMenuFragment extends Fragment {
 
@@ -47,42 +50,57 @@ public class AddMenuFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
 
         add_menu.setEnabled(false);
-        todayMenu.addTextChangedListener(new TextWatcher() {
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    todayMenu.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+                        }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String menu = todayMenu.getText().toString();
-                if(!menu.isEmpty()){
-                    add_menu.setEnabled(true);
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            String menu = todayMenu.getText().toString();
+                            if(!menu.isEmpty()){
+                                add_menu.setEnabled(true);
+                            }
+                            else{
+                                add_menu.setEnabled(false);
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+
+                    add_menu.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String menu = todayMenu.getText().toString();
+                            String id = auth.getUid();
+                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Today's Menu").child(id).setValue(menu).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getActivity(), "Menu Uploaded", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    });
                 }
                 else{
-                    add_menu.setEnabled(false);
+                    Toast.makeText(getActivity(), "You are not a valid Mess Owner", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-        
-        add_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String menu = todayMenu.getText().toString();
-                String id = auth.getUid();
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Today's Menu").child(id).setValue(menu).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Menu Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
             }
         });
 
