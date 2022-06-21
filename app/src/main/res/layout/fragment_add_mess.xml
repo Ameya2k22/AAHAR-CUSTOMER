@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/verify_bg"
+    android:background="@drawable/ic_info_3_bg"
     tools:context=".ui.addMess.AddMessFragment">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="144dp"
+        android:layout_width="178dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
         android:text="Mess Info"
         android:textColor="@color/white"
         android:textSize="32dp"
@@ -23,11 +23,11 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="48dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
@@ -35,8 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="32sp"
+            android:layout_marginBottom="7dp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
             android:hint="Enter Your Name"
@@ -44,31 +44,30 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-          />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/messName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="32sp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
             android:hint="Enter Mess Name"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-             />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/messLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="32sp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
@@ -76,15 +75,14 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-            />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/messEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="32sp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
@@ -92,15 +90,14 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-            />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/monthlyPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="32sp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
@@ -108,15 +105,14 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-           />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/specialDishes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="32sp"
             android:background="@drawable/text_box"
             android:fontFamily="sans-serif"
@@ -124,24 +120,23 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/white"
-            />
+            android:textColorHint="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/create"
             android:layout_width="104dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="10dp"
             android:background="@color/dark_orange"
             android:fontFamily="sans-serif"
             android:inputType="textEmailAddress"
-            android:textSize="16dp"
             android:minHeight="48dp"
             android:padding="8dp"
             android:text="Create"
             android:textColor="@color/white"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -150,8 +145,8 @@
         android:id="@+id/messImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
         android:src="@drawable/aahar_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

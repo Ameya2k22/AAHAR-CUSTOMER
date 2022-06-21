@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:background="@drawable/profile_bg">
+    android:background="@drawable/ic_head_inv_2_bg">
 
     <TextView
         android:id="@+id/textView2"

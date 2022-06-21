@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="178dp"
-        android:background="@drawable/mess_card_bg">
+        android:background="@drawable/ic_pro_card">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userProfileImage"
