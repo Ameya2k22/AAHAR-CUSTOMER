@@ -16,13 +16,10 @@
         <activity
             android:name=".Activity.AllUsersActivity"
             android:exported="false" />
-<<<<<<< HEAD
-=======
 
         <activity
             android:name=".Activity.SigninActivity"
             android:exported="true" />
->>>>>>> 058be1248282b45bd3fbe563cd93081e6caff99a
         
         <activity
             android:name=".Activity.OtpVerificationActivity"
