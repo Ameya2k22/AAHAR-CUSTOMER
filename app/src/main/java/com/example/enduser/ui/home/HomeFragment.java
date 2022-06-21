@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.enduser.Activity.User;
 import com.example.enduser.R;
+import com.example.enduser.StudentInfo;
 import com.example.enduser.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -98,6 +100,29 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snapshot1:snapshot.getChildren()){
+                    StudentInfo studentInfo = snapshot1.getValue(StudentInfo.class);
+                    long ans = studentInfo.dayRemaining;
+                    if(ans == 0){
+                        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).child(snapshot1.getKey()).setValue(null);
+                        FirebaseDatabase.getInstance().getReference().child("EndUser").child("Details").child(studentInfo.getStudentID()).child("mess_id").setValue("");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

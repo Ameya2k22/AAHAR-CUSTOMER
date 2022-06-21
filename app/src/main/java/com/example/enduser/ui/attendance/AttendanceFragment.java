@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,10 +21,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AttendanceFragment extends Fragment {
 
     private FragmentAttendanceBinding binding;
     FirebaseAuth auth;
+    TextView count;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +40,7 @@ public class AttendanceFragment extends Fragment {
         
         final Button startSession = binding.startSession;
         final Button endSession = binding.endSession;
+        count = binding.totalCount;
         auth = FirebaseAuth.getInstance();
         
         startSession.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +67,20 @@ public class AttendanceFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
+
+                            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                            FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(FirebaseAuth.getInstance().getUid()).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    long count = snapshot.getChildrenCount();
+                                    binding.totalCount.setText(String.valueOf(count));
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
                     }
                 });
