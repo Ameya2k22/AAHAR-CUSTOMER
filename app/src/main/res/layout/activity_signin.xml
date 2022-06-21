@@ -58,16 +58,14 @@
             android:layout_marginStart="32sp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32sp"
+            android:inputType="textEmailAddress"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="8dp"
             android:fontFamily="sans-serif"
             android:hint="@string/email"
             android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
-             />
-
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/login_password"
@@ -76,16 +74,14 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="32dp"
+            android:inputType="textPassword"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="8dp"
             android:fontFamily="sans-serif"
             android:hint="@string/password"
             android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
-            />
-
+            android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/forgotPassword"
@@ -116,11 +112,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OR"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:text="OR"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInGoogleBtn"
             android:layout_width="wrap_content"
@@ -130,7 +127,6 @@
             android:background="@android:color/transparent"
             android:drawableStart="@drawable/ic_icongoogle"
             android:drawablePadding="8dp"
-
             android:text="Sign in with Google"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -145,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="@string/no_account"
         android:textColor="@color/white"
@@ -153,8 +149,20 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

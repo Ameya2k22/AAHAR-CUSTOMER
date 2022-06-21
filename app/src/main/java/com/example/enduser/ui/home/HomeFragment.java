@@ -4,47 +4,34 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.enduser.Activity.User;
-import com.example.enduser.R;
 import com.example.enduser.StudentInfo;
 import com.example.enduser.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomeFragment extends Fragment {
-
-    TextView name, Rating, Review, students;
-
     private FragmentHomeBinding binding;
+    DatabaseReference mbase = FirebaseDatabase.getInstance().getReference();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        name = binding.textView2;
-        Rating = binding.rating;
-        Review = binding.reviews;
-        students = binding.Students;
-
+        binding = FragmentHomeBinding.inflate(inflater);
+        FirebaseThread thread = new FirebaseThread();
+        thread.start();
         FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").child(FirebaseAuth.getInstance().getUid()).child("mess_name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String mess_name = snapshot.getValue(String.class);
-                    name.setText(mess_name);
+                String mess_name = snapshot.getValue(String.class);
+                binding.messName.setText(mess_name);
             }
 
             @Override
@@ -53,53 +40,74 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Ratings").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String rating = snapshot.getValue(String.class);
-                Rating.setText(rating);
-            }
+        return binding.getRoot();
+    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+    public class FirebaseThread extends Thread{
+        DatabaseReference mbase = FirebaseDatabase.getInstance().getReference();
 
-            }
-        });
+        @Override
+        public void run() {
+            binding.progressBar.setVisibility(View.VISIBLE);
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Reviews").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
 
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Reviews").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long count = 0;
-                for(DataSnapshot snapshot1: snapshot.getChildren()){
-                    count++;
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long count = snapshot.getChildrenCount();
+                        binding.reviews.setText(String.valueOf(count));
+                    }
+                    else{
+                        binding.reviews.setText(String.valueOf(0));
+                    }
                 }
-                Review.setText(String.valueOf(count));
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long count = 0;
-                for(DataSnapshot snapshot1: snapshot.getChildren()){
-                    count++;
                 }
-                students.setText(String.valueOf(count));
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
 
-            }
-        });
-        return root;
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long count = snapshot.getChildrenCount();
+                        binding.totalCustomers.setText(String.valueOf(count));
+                    }
+                    else{
+                        binding.totalCustomers.setText(String.valueOf(0));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Ratings").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        binding.rating.setText(snapshot.getValue(String.class));
+                    }
+                    else{
+                        binding.rating.setText("Not rated yet!");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            binding.progressBar.setVisibility(View.INVISIBLE);
+        }
+
+
+
     }
 
     @Override

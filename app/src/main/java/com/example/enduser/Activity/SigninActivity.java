@@ -11,21 +11,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.enduser.R;
 import com.example.enduser.databinding.ActivitySigninBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,7 +34,6 @@ public class SigninActivity extends AppCompatActivity {
 
     String email;
     String password;
-    ProgressBar _progressBar;
 
     private boolean showPass = false;
 
@@ -62,29 +55,13 @@ public class SigninActivity extends AppCompatActivity {
 
         binding.signInGoogleBtn.setOnClickListener(view -> SignInUsingGoogle());
 
-
-        binding.loginBtn.setOnClickListener(view -> {
-            String Email = binding.loginEmail.getText().toString();
-            String Password = binding.loginPassword.getText().toString();
-
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(SigninActivity.this, "LoginActivity Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SigninActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(SigninActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+        binding.toSignUpPage.setOnClickListener(v -> {
+            startActivity(new Intent(SigninActivity.this, SignUpActivity.class));
         });
     }
 
     private void SignInUsingGoogle() {
-        _progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         someActivityResultLauncher.launch(signInIntent);
     }
@@ -101,7 +78,7 @@ public class SigninActivity extends AppCompatActivity {
                         task.getResult(ApiException.class);
                         NavigationToNextActivity();
                     } catch (ApiException e){
-                        _progressBar.setVisibility(View.INVISIBLE);
+                        binding.progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(SigninActivity.this, "Something went wrong" + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
@@ -131,31 +108,31 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void LoginUsingEmailPassword() {
-        _progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
                     if (Objects.requireNonNull(mAuth.getCurrentUser()).isEmailVerified()) {
                         binding.loginEmail.setText("");
                         binding.loginPassword.setText("");
-                        _progressBar.setVisibility(View.INVISIBLE);
+                        binding.progressBar.setVisibility(View.INVISIBLE);
                         NavigationToNextActivity();
                     } else {
                         binding.loginEmail.setText("");
                         binding.loginPassword.setText("");
-                        _progressBar.setVisibility(View.INVISIBLE);
+                        binding.progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(SigninActivity.this, "Email is not verified yet please verify...", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(e -> {
                     binding.loginEmail.setText("");
                     binding.loginPassword.setText("");
-                    _progressBar.setVisibility(View.INVISIBLE);
+                    binding.progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(SigninActivity.this, "Login Failed try again...", Toast.LENGTH_LONG).show();
                 });
     }
 
     private void    NavigationToNextActivity(){
-        _progressBar.setVisibility(View.INVISIBLE);
+        binding.progressBar.setVisibility(View.INVISIBLE);
         finish();
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -165,7 +142,11 @@ public class SigninActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+<<<<<<< HEAD
         if(mAuth.getCurrentUser() != null){
+=======
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+>>>>>>> 2a2e65081d82a63386636c9bf89bb77254e9cc51
             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
             startActivity(intent);
         }

@@ -10,14 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.enduser.Adapter.UserDisplayAdapter;
 import com.example.enduser.Models.UserDisplayModel;
-import com.example.enduser.UtitlityClasses.Customer;
-
-import com.example.enduser.Activity.User;
-import com.example.enduser.Adapter.StudentAdapter;
 import com.example.enduser.StudentInfo;
 import com.example.enduser.databinding.FragmentStudentBinding;
 import com.google.firebase.auth.FirebaseAuth;
