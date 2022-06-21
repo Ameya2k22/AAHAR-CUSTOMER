@@ -1,14 +1,26 @@
 package com.example.enduser.Models;
 
+import com.example.enduser.Adapter.UserDisplayAdapter;
+
 public class UserDisplayModel {
     int image;
-    String name, mobile, email;
+    String name, phone_no, email;
 
-    public UserDisplayModel(int image, String name, String mobile, String email) {
+    public UserDisplayModel(){}
+
+    public UserDisplayModel(int image, String name, String phone_no, String email) {
         this.image = image;
         this.name = name;
-        this.mobile = mobile;
+        this.phone_no = phone_no;
         this.email = email;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
     }
 
     public int getImage() {
@@ -27,13 +39,6 @@ public class UserDisplayModel {
         this.name = name;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
 
     public String getEmail() {
         return email;

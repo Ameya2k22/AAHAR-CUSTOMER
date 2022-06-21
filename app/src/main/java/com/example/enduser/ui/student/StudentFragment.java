@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.enduser.Activity.Customer;
+import com.example.enduser.Adapter.UserDisplayAdapter;
+import com.example.enduser.Models.UserDisplayModel;
+import com.example.enduser.UtitlityClasses.Customer;
 import com.example.enduser.Activity.User;
 import com.example.enduser.Adapter.StudentAdapter;
 import com.example.enduser.R;
@@ -37,8 +39,8 @@ public class StudentFragment extends Fragment {
 
     private FragmentStudentBinding binding;
     RecyclerView recyclerView;
-    StudentAdapter studentAdapter;
-    ArrayList<User> studentList;
+    UserDisplayAdapter userDisplayAdapter;
+    ArrayList<UserDisplayModel> studentList;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +54,13 @@ public class StudentFragment extends Fragment {
 
         recyclerView = binding.Recyclerview;
         studentList = new ArrayList<>();
-        studentAdapter = new StudentAdapter(studentList, getActivity());
+//        studentAdapter = new StudentAdapter(studentList, getActivity());
+        userDisplayAdapter = new UserDisplayAdapter(studentList, getActivity());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        recyclerView.setAdapter(studentAdapter);
+        recyclerView.setAdapter(userDisplayAdapter);
 
         String id = FirebaseAuth.getInstance().getUid();
 
@@ -71,9 +74,9 @@ public class StudentFragment extends Fragment {
                         FirebaseDatabase.getInstance().getReference().child("EndUser").child("Details").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                User user = snapshot.getValue(User.class);
-                                studentList.add(user);
-                                studentAdapter.notifyDataSetChanged();
+                                UserDisplayModel userDisplayModel = snapshot.getValue(UserDisplayModel.class);
+                                studentList.add(userDisplayModel);
+                                userDisplayAdapter.notifyDataSetChanged();
                             }
 
                             @Override
