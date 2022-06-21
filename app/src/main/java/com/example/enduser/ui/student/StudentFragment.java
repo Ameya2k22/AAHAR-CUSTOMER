@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.enduser.Adapter.UserDisplayAdapter;
 import com.example.enduser.Models.UserDisplayModel;
@@ -59,9 +60,9 @@ public class StudentFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setAdapter(userDisplayAdapter);
 
-        String id = FirebaseAuth.getInstance().getUid();
+        String messId = FirebaseAuth.getInstance().getUid();
 
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(messId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
