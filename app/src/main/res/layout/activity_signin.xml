@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.SigninActivity">
+    tools:context=".Activity.SigninActivity"
+    android:background="@drawable/ic_head_inv_2_bg">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/header_bg_1"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,13 +67,12 @@
             android:minHeight="48dp"
             android:textColor="@color/black" />
 
-
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="32dp"
             android:inputType="textPassword"
             android:background="@drawable/text_box"
@@ -94,17 +93,16 @@
             android:gravity="center"
             android:padding="4dp"
             android:text="@string/forgot_password"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
-
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="136dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button"
             android:fontFamily="sans-serif"
             android:text="@string/login"
@@ -125,14 +123,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:drawableStart="@drawable/ic_icongoogle"
             android:drawablePadding="8dp"
-
             android:text="Sign in with Google"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -148,7 +144,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="@string/no_account"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

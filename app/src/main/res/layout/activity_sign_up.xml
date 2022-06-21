@@ -4,28 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.SignUpActivity">
+    tools:context=".Activity.SignUpActivity"
+    android:background="@drawable/ic_head_inv_2_bg">
 
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/header_bg_1"
+        android:layout_width="412dp"
+        android:layout_height="140dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="75dp"
             android:gravity="center"
             android:text="@string/welcome_user"
             android:textColor="#fff"
@@ -51,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginEnd="32sp"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_person"
@@ -62,6 +60,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/white"
              />
 
         <EditText
@@ -71,6 +70,7 @@
             android:layout_marginStart="32sp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32sp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="8dp"
@@ -79,6 +79,7 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             />
 
 
@@ -89,6 +90,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_call"
             android:drawablePadding="8dp"
@@ -97,6 +99,7 @@
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             />
 
         <EditText
@@ -106,6 +109,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/text_box"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="8dp"
@@ -114,6 +118,7 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/white"
              />
 
         <Button
@@ -141,7 +146,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/yes_account"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

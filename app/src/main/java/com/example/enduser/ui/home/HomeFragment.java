@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
+import com.example.enduser.StudentInfo;
 import com.example.enduser.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -108,6 +108,29 @@ public class HomeFragment extends Fragment {
 
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snapshot1:snapshot.getChildren()){
+                    StudentInfo studentInfo = snapshot1.getValue(StudentInfo.class);
+                    long ans = studentInfo.dayRemaining;
+                    if(ans == 0){
+                        FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).child(snapshot1.getKey()).setValue(null);
+                        FirebaseDatabase.getInstance().getReference().child("EndUser").child("Details").child(studentInfo.getStudentID()).child("mess_id").setValue("");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
