@@ -11,18 +11,17 @@
 
     <TextView
         android:id="@+id/header"
-        android:layout_width="391dp"
-        android:layout_height="116dp"
-        android:layout_marginBottom="404dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         android:background="@drawable/ic_black_2_bg"
         android:gravity="center"
-        android:text="Add Today's Menu"
+        android:text="@string/add_today_s_menu"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todayMenu" />
 
     <View
         android:id="@+id/view"
@@ -35,28 +34,27 @@
 
     <EditText
         android:id="@+id/todayMenu"
-        android:layout_width="391dp"
-        android:layout_height="273dp"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
         android:gravity="top"
-        android:hint="Enter today's menu"
+        android:inputType="text"
+        android:hint="@string/enter_today_s_menu"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/header"
+        android:autofillHints="today's menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/add_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

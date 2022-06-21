@@ -15,8 +15,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:text="Today's Attendance session"
-        android:textColor="@color/white"
+        android:text="@string/today_s_attendance_session"
+        android:textColor="#D32F2F"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +40,15 @@
         android:backgroundTint="#04E304"
         android:fontFamily="@font/oswald"
         android:padding="16dp"
-        android:text="Start Session"
+        android:text="@string/start_session"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/endSession"
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        app:layout_constraintTop_toBottomOf="@id/view"
+        tools:targetApi="lollipop" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/endSession"
@@ -57,14 +58,15 @@
         android:backgroundTint="#F41818"
         android:fontFamily="@font/oswald"
         android:padding="16dp"
-        android:text="End Session"
+        android:text="@string/end_session"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/startSession"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startSession"
-        app:layout_constraintTop_toTopOf="@id/startSession" />
+        app:layout_constraintTop_toTopOf="@id/startSession"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView3"

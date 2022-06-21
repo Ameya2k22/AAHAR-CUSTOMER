@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.enduser.databinding.FragmentAttendanceBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,47 +41,34 @@ public class AttendanceFragment extends Fragment {
         count = binding.totalCount;
         auth = FirebaseAuth.getInstance();
         
-        startSession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        startSession.setOnClickListener(view -> FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
             }
-        });
+        }));
 
-        endSession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id = auth.getUid();
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
+        endSession.setOnClickListener(view -> {
+            String id = auth.getUid();
+            assert id != null;
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(false).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
 
-                            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(FirebaseAuth.getInstance().getUid()).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    long count = snapshot.getChildrenCount();
-                                    binding.totalCount.setText(String.valueOf(count));
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
+                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                    FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            long count = snapshot.getChildrenCount();
+                            binding.totalCount.setText(String.valueOf(count));
                         }
-                    }
-                });
-            }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            });
         });
 
         return root;
