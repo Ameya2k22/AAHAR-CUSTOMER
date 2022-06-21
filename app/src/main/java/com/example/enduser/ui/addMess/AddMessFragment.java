@@ -19,9 +19,6 @@ import android.widget.Toast;
 
 import com.example.enduser.UtitlityClasses.MessInfo;
 import com.example.enduser.databinding.FragmentAddMessBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.Objects;
 
@@ -57,19 +53,8 @@ public class AddMessFragment extends Fragment {
         binding = FragmentAddMessBinding.inflate(inflater, container, false);
         auth = FirebaseAuth.getInstance();
 
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                phone = snapshot.getValue(String.class);
-            }
+        binding.create.setOnClickListener(v -> createNewMess());
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        
-        binding.create.setOnClickListener(view -> createNewMess());
 
         binding.messImage.setOnClickListener(v -> {
             Intent imageIntent = new Intent();
@@ -129,35 +114,27 @@ public class AddMessFragment extends Fragment {
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                     storageReference.child("Customer").child("Mess_Images")
                             .putFile(messImageUrl)
-                            .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
-                                        messInfo.setMess_upi_id(messUpiId);
+                            .addOnCompleteListener(task -> {
+                                if(task.isSuccessful()){
+                                    MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
+                                    messInfo.setMess_upi_id(messUpiId);
 
-                                        if(!messImage.isEmpty()){
-                                            messInfo.setMess_image(String.valueOf(storageReference.getDownloadUrl()));
-                                        }
-                                        FirebaseDatabase.getInstance().getReference()
-                                                .child("Customer")
-                                                .child("Mess-Info")
-                                                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                                                .setValue(messInfo)
-                                                .addOnCompleteListener(task2 -> {
-                                                    if(task2.isSuccessful()){
-                                                        Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+                                    if(!messImage.isEmpty()){
+                                        messInfo.setMess_image(String.valueOf(storageReference.getDownloadUrl()));
                                     }
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("Customer")
+                                            .child("Mess-Info")
+                                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                                            .setValue(messInfo)
+                                            .addOnCompleteListener(task2 -> {
+                                                if(task2.isSuccessful()){
+                                                    Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                 }
                             })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "Unable to create mess", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            .addOnFailureListener(e -> Toast.makeText(getActivity(), "Unable to create mess", Toast.LENGTH_SHORT).show());
 
                 }
             }

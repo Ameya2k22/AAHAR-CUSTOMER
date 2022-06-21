@@ -35,42 +35,61 @@ public class AttendanceFragment extends Fragment {
         inflater = LayoutInflater.from(getActivity());
         binding = FragmentAttendanceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        
+
         final Button startSession = binding.startSession;
         final Button endSession = binding.endSession;
         count = binding.totalCount;
         auth = FirebaseAuth.getInstance();
-        
-        startSession.setOnClickListener(view -> FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
-            }
-        }));
 
-        endSession.setOnClickListener(view -> {
-            String id = auth.getUid();
-            assert id != null;
-            FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(false).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
 
-                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                    FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            long count = snapshot.getChildrenCount();
-                            binding.totalCount.setText(String.valueOf(count));
+                            startSession.setOnClickListener(v -> FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true)
+                                    .addOnCompleteListener(task -> {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }));
+
+                            endSession.setOnClickListener(view -> {
+                                String id = auth.getUid();
+                                assert id != null;
+                                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(false).addOnCompleteListener(task -> {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
+
+                                        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                                        FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(FirebaseAuth.getInstance().getUid()).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                                                long count = snapshot1.getChildrenCount();
+                                                binding.totalCount.setText(String.valueOf(count));
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+
+                        }
+                        else{
+                            Toast.makeText(getActivity(), "You have not own any mess yet!!!", Toast.LENGTH_SHORT).show();
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    }
 
-                        }
-                    });
-                }
-            });
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
         return root;
     }
 
@@ -80,3 +99,4 @@ public class AttendanceFragment extends Fragment {
         binding = null;
     }
 }
+
