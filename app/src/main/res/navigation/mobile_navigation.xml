@@ -24,21 +24,12 @@
         tools:layout="@layout/fragment_student" />
 
     <fragment
-<<<<<<< HEAD
         android:id="@+id/nav_notification"
         android:name="com.example.enduser.ui.Notification.NotificationFragment"
         android:label="Notification"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.enduser.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-=======
->>>>>>> origin
         android:id="@+id/nav_addmess"
         android:name="com.example.enduser.ui.addMess.AddMessFragment"
         android:label="@string/menu_addmess"

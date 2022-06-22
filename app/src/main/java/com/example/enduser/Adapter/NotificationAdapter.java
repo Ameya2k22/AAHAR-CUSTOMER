@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.L;
-import com.example.enduser.Activity.User;
+import com.example.enduser.Models.User;
 import com.example.enduser.Models.Notification;
 import com.example.enduser.R;
 import com.google.android.gms.tasks.OnCompleteListener;
