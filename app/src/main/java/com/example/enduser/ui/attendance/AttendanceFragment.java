@@ -45,50 +45,22 @@ public class AttendanceFragment extends Fragment {
         
         FirebaseDatabase.getInstance().getReference().child("Customer").child("Mess-Info").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-<<<<<<< HEAD
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     startSession.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             String id = auth.getUid();
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-=======
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
-
-        endSession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id = auth.getUid();
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(id).child("SessionOn").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
-
-                            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(FirebaseAuth.getInstance().getUid()).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
->>>>>>> 2a2e65081d82a63386636c9bf89bb77254e9cc51
+                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Attendance").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SessionOn").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(getActivity(), "Attendance Session Created.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                         }
                     });
-
                     endSession.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -97,14 +69,13 @@ public class AttendanceFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getActivity(), "Attendance Session Closed", Toast.LENGTH_SHORT).show();
-
+                                        Toast.makeText(getActivity(), "Attendance Session Created Successfully", Toast.LENGTH_SHORT).show();
                                         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                                         FirebaseDatabase.getInstance().getReference().child("Customer").child("AttendanceByDay").child(FirebaseAuth.getInstance().getUid()).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                long count = snapshot.getChildrenCount();
-                                                binding.totalCount.setText(String.valueOf(count));
+                                                long id = snapshot.getChildrenCount();
+                                                binding.totalCount.setText(String.valueOf(id));
                                             }
 
                                             @Override
@@ -119,7 +90,7 @@ public class AttendanceFragment extends Fragment {
                     });
                 }
                 else{
-                    Toast.makeText(getActivity(), "You don't operate any mess", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "You cannot create a session", Toast.LENGTH_SHORT).show();
                 }
             }
 

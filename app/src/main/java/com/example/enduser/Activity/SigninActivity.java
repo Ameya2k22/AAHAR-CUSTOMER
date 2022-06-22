@@ -142,14 +142,9 @@ public class SigninActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-<<<<<<< HEAD
-        if(mAuth.getCurrentUser() != null){
-=======
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
->>>>>>> 2a2e65081d82a63386636c9bf89bb77254e9cc51
             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
-
 }

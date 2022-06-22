@@ -57,18 +57,17 @@ public class AddMessFragment extends Fragment {
         binding.create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(FirebaseAuth.getInstance().getUid()).child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             phone = snapshot.getValue(String.class);
-                            String ownerName_val = ownerName.getText().toString();
-                            String messName_val = messName.getText().toString();
-                            String location_val = location.getText().toString();
-                            String messEmail_val = messEmail.getText().toString();
-                            String monthlyPrice_val = monthlyPrice.getText().toString();
-                            String specialDishes_val = specialDishes.getText().toString();
+                            String ownerName_val = binding.ownerName.getText().toString();
+                            String messName_val = binding.messName.getText().toString();
+                            String location_val = binding.messLocation.getText().toString();
+                            String messEmail_val = binding.messEmail.getText().toString();
+                            String monthlyPrice_val = binding.monthlyPrice.getText().toString();
+                            String specialDishes_val = binding.specialDishes.getText().toString();
 
                             if(ownerName_val.isEmpty() || messName_val.isEmpty() || location_val.isEmpty() || messEmail_val.isEmpty() || monthlyPrice_val.isEmpty() || specialDishes_val.isEmpty()){
                                 Toast.makeText(getActivity(), "Fill Information Properly", Toast.LENGTH_SHORT).show();
@@ -96,9 +95,7 @@ public class AddMessFragment extends Fragment {
 
                     }
                 });
-=======
                 createNewMess();
->>>>>>> 2a2e65081d82a63386636c9bf89bb77254e9cc51
             }
         });
 
@@ -138,7 +135,7 @@ public class AddMessFragment extends Fragment {
             });
 
     private void createNewMess() {
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(FirebaseAuth.getInstance().getUid()).child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 phone = snapshot.getValue(String.class);
