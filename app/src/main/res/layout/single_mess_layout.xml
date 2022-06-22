@@ -22,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/mess_card_bg">
+            android:background="@drawable/ic_pro_card">
 
             <View
                 android:id="@+id/view2"
@@ -50,38 +50,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/oswald"
-                android:text="Aster Mess"
+                android:text=""
                 android:textColor="@color/sky_blue"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="189dp"
-                tools:layout_editor_absoluteY="50dp" />
+                app:layout_constraintBottom_toTopOf="@+id/Location"
+                app:layout_constraintStart_toStartOf="@+id/Location"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <TextView
                 android:id="@+id/Location"
                 android:layout_width="233dp"
                 android:layout_height="53dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/oswald"
-                android:gravity="left"
-                android:text="Walchand College of Engineering, Vishrambaug, Sangli, 416262"
+                android:gravity="start"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toBottomOf="@+id/MessName"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toEndOf="@+id/view2" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
 
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="16dp"
                 app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -95,7 +97,8 @@
                     android:numStars="5"
                     android:progressBackgroundTint="@color/black"
                     android:progressTint="@color/dark_orange"
-                    android:rating="3" />
+                    android:rating="0"
+                    tools:targetApi="lollipop" />
 
             </androidx.cardview.widget.CardView>
 

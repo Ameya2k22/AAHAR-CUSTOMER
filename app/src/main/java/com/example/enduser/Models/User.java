@@ -1,4 +1,4 @@
-package com.example.enduser.Activity;
+package com.example.enduser.Models;
 
 public class User {
     private String email, name, phone_no, studentID;

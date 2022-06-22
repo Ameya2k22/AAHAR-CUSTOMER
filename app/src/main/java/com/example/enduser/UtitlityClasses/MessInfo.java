@@ -2,6 +2,24 @@ package com.example.enduser.UtitlityClasses;
 
 public class MessInfo {
     private String owner_name, mess_name, mess_email, mess_location, monthlyPrice, specialDishes, ratings, phone_no;
+    private String mess_image;
+    private String mess_upi_id;
+
+    public String getMess_image() {
+        return mess_image;
+    }
+
+    public void setMess_image(String mess_image) {
+        this.mess_image = mess_image;
+    }
+
+    public String getMess_upi_id() {
+        return mess_upi_id;
+    }
+
+    public void setMess_upi_id(String mess_upi_id) {
+        this.mess_upi_id = mess_upi_id;
+    }
 
     public String getPhone_no() {
         return phone_no;

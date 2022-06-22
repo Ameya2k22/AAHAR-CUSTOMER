@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/post_s_bg"
+    android:background="@drawable/ic_attend_2_bg"
     tools:context=".ui.attendance.AttendanceFragment">
 
     <TextView
@@ -15,8 +15,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:text="Today's Attendance session"
-        android:textColor="@color/white"
+        android:text="@string/today_s_attendance_session"
+        android:textColor="#D32F2F"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +40,15 @@
         android:backgroundTint="#04E304"
         android:fontFamily="@font/oswald"
         android:padding="16dp"
-        android:text="Start Session"
+        android:text="@string/start_session"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/endSession"
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        app:layout_constraintTop_toBottomOf="@id/view"
+        tools:targetApi="lollipop" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/endSession"
@@ -57,40 +58,41 @@
         android:backgroundTint="#F41818"
         android:fontFamily="@font/oswald"
         android:padding="16dp"
-        android:text="End Session"
+        android:text="@string/end_session"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/startSession"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startSession"
-        app:layout_constraintTop_toTopOf="@id/startSession" />
+        app:layout_constraintTop_toTopOf="@id/startSession"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/oswald"
-        android:text="Total Count"
+        android:text="@string/total_count"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startSession" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/total_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/oswald"
-        android:text="12000"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

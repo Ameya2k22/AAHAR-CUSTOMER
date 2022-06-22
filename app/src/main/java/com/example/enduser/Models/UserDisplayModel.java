@@ -1,6 +1,5 @@
 package com.example.enduser.Models;
 
-import com.example.enduser.Adapter.UserDisplayAdapter;
 
 public class UserDisplayModel {
 //    int image;

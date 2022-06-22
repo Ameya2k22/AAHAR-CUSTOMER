@@ -10,16 +10,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="178dp"
-        android:background="@drawable/mess_card_bg">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_pro_card">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userProfileImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
             android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,67 +27,69 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:text="Username"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/mobile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42" />
+            app:layout_constraintStart_toEndOf="@+id/userProfileImage"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="16dp"
+            android:text=""
             android:textColor="@color/white"
-            android:text="9456871203"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
             android:textColor="@color/white"
-            android:text="email@gmail.com"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mobile" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mobile"
+            app:layout_constraintTop_toBottomOf="@+id/paymentbtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/attendancebtn"
             android:layout_width="123dp"
             android:layout_height="43dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/dark_orange"
             android:padding="8dp"
-            android:text="Attendance"
+            android:text="@string/attendance"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/name"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/paymentbtn"
             android:layout_width="125dp"
             android:layout_height="39dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="56dp"
             android:background="@color/light_orange"
             android:padding="8dp"
-            android:text="Payment"
-            android:textColor="@color/white"
 
+            android:text="@string/payment"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/attendancebtn"
+            app:layout_constraintStart_toStartOf="@+id/attendancebtn"
+            app:layout_constraintTop_toBottomOf="@+id/attendancebtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

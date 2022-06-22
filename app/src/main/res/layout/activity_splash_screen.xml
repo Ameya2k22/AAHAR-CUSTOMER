@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.SplashScreen"
-    android:background="@drawable/black_bg">
+    android:background="@drawable/ic_black_2_bg">
 
 
     <ImageView
@@ -14,6 +14,7 @@
         android:layout_height="94dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/aahar_logo"
+        android:contentDescription="@string/aahar_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
