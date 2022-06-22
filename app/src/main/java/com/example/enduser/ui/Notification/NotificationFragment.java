@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.enduser.Adapter.NotificationAdapter;
 import com.example.enduser.Adapter.UserDisplayAdapter;
@@ -56,12 +57,13 @@ public class NotificationFragment extends Fragment {
         FirebaseDatabase.getInstance().getReference().child("Customer").child("Notification").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snapshot1 : snapshot.getChildren()){
-                    Notification notification = snapshot1.getValue(Notification.class);
-                    notification.setNotificationId(snapshot1.getKey());
-                    notifications.add(notification);
+                if(snapshot.exists()){
+                    for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                        Notification notification = snapshot1.getValue(Notification.class);
+                        notifications.add(notification);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
 
 

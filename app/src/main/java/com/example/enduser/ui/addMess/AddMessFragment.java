@@ -52,29 +52,31 @@ public class AddMessFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentAddMessBinding.inflate(inflater, container, false);
         auth = FirebaseAuth.getInstance();
+
+//        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(FirebaseAuth.getInstance().getUid()).child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()) {
+//                    phone = snapshot.getValue(String.class);
+//                    String ownerName_val = binding.ownerName.getText().toString();
+//                    String messName_val = binding.messName.getText().toString();
+//                    String location_val = binding.messLocation.getText().toString();
+//                    String messEmail_val = binding.messEmail.getText().toString();
+//                    String monthlyPrice_val = binding.monthlyPrice.getText().toString();
+//                    String specialDishes_val = binding.specialDishes.getText().toString();
+//                    messImage = String.valueOf(binding.messImage);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
         
         binding.create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(FirebaseAuth.getInstance().getUid()).child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()) {
-                            phone = snapshot.getValue(String.class);
-                            String ownerName_val = binding.ownerName.getText().toString();
-                            String messName_val = binding.messName.getText().toString();
-                            String location_val = binding.messLocation.getText().toString();
-                            String messEmail_val = binding.messEmail.getText().toString();
-                            String monthlyPrice_val = binding.monthlyPrice.getText().toString();
-                            String specialDishes_val = binding.specialDishes.getText().toString();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 createNewMess();
             }
         });
@@ -129,36 +131,22 @@ public class AddMessFragment extends Fragment {
 
                 if(ownerName_val.isEmpty() || messName_val.isEmpty() || location_val.isEmpty() || messEmail_val.isEmpty() || monthlyPrice_val.isEmpty() || specialDishes_val.isEmpty() || messUpiId.isEmpty()){
                     Toast.makeText(getActivity(), "Fill Information Properly", Toast.LENGTH_SHORT).show();
-                } else if(messImage.isEmpty() || URLUtil.isValidUrl(String.valueOf(messImageUrl))){
-                    Toast.makeText(getActivity(), "Mess Image is Mandatory", Toast.LENGTH_LONG).show();
                 }
                 else{
 
-                    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-                    storageReference.child("Customer").child("Mess_Images")
-                            .putFile(messImageUrl)
-                            .addOnCompleteListener(task -> {
-                                if(task.isSuccessful()){
-                                    MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
-                                    messInfo.setMess_upi_id(messUpiId);
+                    MessInfo messInfo = new MessInfo(ownerName_val, messName_val, location_val, messEmail_val, monthlyPrice_val, specialDishes_val, phone);
+                    messInfo.setMess_upi_id(messUpiId);
 
-                                    if(!messImage.isEmpty()){
-                                        messInfo.setMess_image(String.valueOf(storageReference.getDownloadUrl()));
-                                    }
-                                    FirebaseDatabase.getInstance().getReference()
-                                            .child("Customer")
-                                            .child("Mess-Info")
-                                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                                            .setValue(messInfo)
-                                            .addOnCompleteListener(task2 -> {
-                                                if(task2.isSuccessful()){
-                                                    Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Customer")
+                            .child("Mess-Info")
+                            .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                            .setValue(messInfo)
+                            .addOnCompleteListener(task2 -> {
+                                if(task2.isSuccessful()){
+                                    Toast.makeText(getActivity(), "Mess Details Uploaded Successfully", Toast.LENGTH_SHORT).show();
                                 }
-                            })
-                            .addOnFailureListener(e -> Toast.makeText(getActivity(), "Unable to create mess", Toast.LENGTH_SHORT).show());
-
+                            });
                 }
             }
 

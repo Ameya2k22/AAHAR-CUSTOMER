@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,22 +43,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         Notification notification = notifications.get(position);
-
         String type = notification.getNotificationType();
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Notification").child(notification.getNotificationType()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("EndUser").child("Details").child(notification.getNotificationBy()).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (type.equals("Joined")) {
-                    holder.notification.setText(user.getName() + " joined the mess");
-                } else if (type.equals("Review")) {
-                    holder.notification.setText(user.getName() + " reviewed the mess");
-                } else if (type.equals("Rating")) {
-                    holder.notification.setText(user.getName() + " gives rating to the mess");
-                } else if (type.equals("Payment")) {
-                    holder.notification.setText(user.getName() + " has done the payment");
+                if(snapshot.exists()){
+                    String name = snapshot.getValue(String.class);
+                    Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
                 }
-
+                else{
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -65,6 +61,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             }
         });
+
     }
 
     @Override
