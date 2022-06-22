@@ -2,6 +2,7 @@ package com.example.enduser.Activity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -18,7 +19,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -46,7 +51,12 @@ public class SigninActivity extends AppCompatActivity {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
-        binding.loginBtn.setOnClickListener(view -> validateFieldsForLogin());
+        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validateFieldsForLogin();
+            }
+        });
 
         binding.signInGoogleBtn.setOnClickListener(view -> SignInUsingGoogle());
 
@@ -119,26 +129,21 @@ public class SigninActivity extends AppCompatActivity {
 
     private void LoginUsingEmailPassword() {
         binding.progressBar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(authResult -> {
-                    if (Objects.requireNonNull(mAuth.getCurrentUser()).isEmailVerified()) {
-                        binding.loginEmail.setText("");
-                        binding.loginPassword.setText("");
-                        binding.progressBar.setVisibility(View.INVISIBLE);
-                        NavigationToNextActivity();
-                    } else {
-                        binding.loginEmail.setText("");
-                        binding.loginPassword.setText("");
-                        binding.progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(SigninActivity.this, "Email is not verified yet please verify...", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    binding.loginEmail.setText("");
-                    binding.loginPassword.setText("");
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
                     binding.progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(SigninActivity.this, "Login Failed try again...", Toast.LENGTH_LONG).show();
-                });
+                    NavigationToNextActivity();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                binding.progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(SigninActivity.this, "Login Failed try again...", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void    NavigationToNextActivity(){
