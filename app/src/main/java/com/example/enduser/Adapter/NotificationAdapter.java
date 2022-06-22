@@ -49,7 +49,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String name = snapshot.getValue(String.class);
-                    Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
+                    if(type.equals("Review")){
+                        holder.notificationText.setText(name+" posted  a review");
+                    }
+                    else if(type.equals("Payment")){
+                        holder.notificationText.setText(name+" payed the mess fees");
+                    }
+                    else if(type.equals("Joined")){
+                        holder.notificationText.setText(name+" joined the mess");
+                    }
+                    else if(type.equals("Ratings")){
+                        holder.notificationText.setText(name+" posted ratings to your app");
+                    }
                 }
                 else{
                     Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
@@ -70,12 +81,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class VH extends RecyclerView.ViewHolder {
-        TextView notification;
+        TextView notificationText;
         public VH(@NonNull View itemView) {
             super(itemView);
-
-            notification = itemView.findViewById(R.id.notificationText);
-
+            notificationText = itemView.findViewById(R.id.notificationText);
         }
     }
 }

@@ -46,8 +46,8 @@ public class NotificationFragment extends Fragment {
         View view = binding.getRoot();
 
         RecyclerView recyclerView = binding.recyclerview;
-        ArrayList<Notification> notifications = new ArrayList<>();
-        NotificationAdapter adapter = new NotificationAdapter(notifications, getActivity());
+        ArrayList<Notification> notificationList = new ArrayList<>();
+        NotificationAdapter adapter = new NotificationAdapter(notificationList, getActivity());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -60,7 +60,7 @@ public class NotificationFragment extends Fragment {
                 if(snapshot.exists()){
                     for(DataSnapshot snapshot1 : snapshot.getChildren()){
                         Notification notification = snapshot1.getValue(Notification.class);
-                        notifications.add(notification);
+                        notificationList.add(notification);
                     }
                     adapter.notifyDataSetChanged();
                 }

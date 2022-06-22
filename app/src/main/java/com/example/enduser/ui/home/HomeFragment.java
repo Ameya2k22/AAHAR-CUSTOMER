@@ -54,59 +54,59 @@ public class HomeFragment extends Fragment {
         @Override
         public void run() {
             binding.progressBar.setVisibility(View.VISIBLE);
-//            FirebaseDatabase.getInstance().getReference().child("Customer").child("Reviews").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if(snapshot.exists()){
-//                        long count = snapshot.getChildrenCount();
-//                        binding.reviews.setText(String.valueOf(count));
-//                    }
-//                    else{
-//                        binding.reviews.setText(String.valueOf(0));
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Reviews").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long count = snapshot.getChildrenCount();
+                        binding.reviews.setText(String.valueOf(count));
+                    }
+                    else{
+                        binding.reviews.setText(String.valueOf(0));
+                    }
+                }
 
-//            FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if(snapshot.exists()){
-//                        long count = snapshot.getChildrenCount();
-//                        binding.totalCustomers.setText(String.valueOf(count));
-//                    }
-//                    else{
-//                        binding.totalCustomers.setText(String.valueOf(0));
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//
-//            FirebaseDatabase.getInstance().getReference().child("Customer").child("Ratings").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if(snapshot.exists()){
-//                        binding.rating.setText(snapshot.getValue(String.class));
-//                    }
-//                    else{
-//                        binding.rating.setText(getResources().getString(R.string.not_rated_yet));
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Students").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long count = snapshot.getChildrenCount();
+                        binding.totalCustomers.setText(String.valueOf(count));
+                    }
+                    else{
+                        binding.totalCustomers.setText(String.valueOf(0));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Ratings").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        binding.rating.setText(snapshot.getValue(String.class));
+                    }
+                    else{
+                        binding.rating.setText(getResources().getString(R.string.not_rated_yet));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
 
