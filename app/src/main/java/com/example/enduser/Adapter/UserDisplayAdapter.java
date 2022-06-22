@@ -14,7 +14,7 @@ import com.example.enduser.R;
 import com.example.enduser.databinding.SingleUserActivityBinding;
 import java.util.ArrayList;
 
-public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.myviewholder>{
+public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.myViewHolder>{
 
     ArrayList<UserDisplayModel> list;
     Context context;
@@ -26,28 +26,23 @@ public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.
 
     @NonNull
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.single_user_activity, parent, false);
-        return new myviewholder(view);
+        return new myViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
 
         UserDisplayModel user = list.get(position);
 
         holder.binding.name.setText(user.getName());
         holder.binding.mobile.setText(user.getPhone_no());
         holder.binding.email.setText(user.getEmail());
-//        holder.binding.userProfileImage.setImageResource(user.getImage());
 
-        holder.binding.attendancebtn.setOnClickListener(v -> {
-            ShowAttendance();
-        });
+        holder.binding.attendancebtn.setOnClickListener(v -> ShowAttendance());
 
-        holder.binding.paymentbtn.setOnClickListener(v -> {
-            ShowPayment();
-        });
+        holder.binding.paymentbtn.setOnClickListener(v -> ShowPayment());
     }
 
     private void ShowAttendance() {
@@ -63,11 +58,11 @@ public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.
         return list.size();
     }
 
-    class myviewholder extends RecyclerView.ViewHolder{
+    static class myViewHolder extends RecyclerView.ViewHolder{
 
         SingleUserActivityBinding binding;
 
-        public myviewholder(@NonNull View itemView) {
+        public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
             binding = SingleUserActivityBinding.bind(itemView);

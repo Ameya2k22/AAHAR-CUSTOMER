@@ -61,7 +61,7 @@
             android:minHeight="48dp"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"
-             />
+            tools:targetApi="lollipop" />
 
         <EditText
             android:id="@+id/reg_email"
@@ -79,8 +79,9 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:autofillHints="register mail"
             android:backgroundTint="@color/white"
-            />
+            tools:targetApi="lollipop" />
 
 
         <EditText
@@ -99,8 +100,9 @@
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:autofillHints="register mobile"
             android:backgroundTint="@color/white"
-            />
+            tools:targetApi="lollipop" />
 
         <EditText
             android:id="@+id/reg_password"
@@ -118,8 +120,9 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColor="@color/black"
+            android:autofillHints="register password"
             android:backgroundTint="@color/white"
-             />
+            tools:targetApi="lollipop" />
 
         <Button
             android:id="@+id/reg_submit"

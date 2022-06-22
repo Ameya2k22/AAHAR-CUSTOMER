@@ -14,15 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.enduser.R;
 import com.example.enduser.databinding.FragmentAddMenuBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class AddMenuFragment extends Fragment {
 
@@ -39,7 +38,7 @@ public class AddMenuFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentAddMenuBinding.inflate(inflater, container, false);
@@ -50,7 +49,7 @@ public class AddMenuFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
 
         add_menu.setEnabled(false);
-        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(Objects.requireNonNull(auth.getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -59,37 +58,15 @@ public class AddMenuFragment extends Fragment {
                         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                         }
-
-                        @Override
+                    @Override
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             String menu = todayMenu.getText().toString();
-                            if(!menu.isEmpty()){
-                                add_menu.setEnabled(true);
-                            }
-                            else{
-                                add_menu.setEnabled(false);
-                            }
+                        add_menu.setEnabled(!menu.isEmpty());
                         }
 
                         @Override
                         public void afterTextChanged(Editable editable) {
 
-                        }
-                    });
-
-                    add_menu.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String menu = todayMenu.getText().toString();
-                            String id = auth.getUid();
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Today's Menu").child(id).setValue(menu).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(getActivity(), "Menu Uploaded", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
                         }
                     });
                 }
@@ -102,6 +79,17 @@ public class AddMenuFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        add_menu.setOnClickListener(view -> {
+            String menu = todayMenu.getText().toString();
+            String id = auth.getUid();
+            assert id != null;
+            FirebaseDatabase.getInstance().getReference().child("Customer").child("Today's Menu").child(id).setValue(menu).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity(), "Menu Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         return root;

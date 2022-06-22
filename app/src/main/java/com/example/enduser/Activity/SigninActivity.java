@@ -2,7 +2,6 @@ package com.example.enduser.Activity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -35,8 +34,6 @@ public class SigninActivity extends AppCompatActivity {
     String email;
     String password;
 
-    private boolean showPass = false;
-
     ActivitySigninBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,34 +46,47 @@ public class SigninActivity extends AppCompatActivity {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
-        binding.loginBtn.setOnClickListener(view -> {
-            validateFieldsForLogin();
-        });
+        binding.loginBtn.setOnClickListener(view -> validateFieldsForLogin());
 
         binding.signInGoogleBtn.setOnClickListener(view -> SignInUsingGoogle());
 
-        binding.toSignUpPage.setOnClickListener(v -> {
-            startActivity(new Intent(SigninActivity.this, SignUpActivity.class));
+        binding.forgotPassword.setOnClickListener(v -> {
+            if(binding.loginEmail.getText().toString().isEmpty()){
+                Toast.makeText(SigninActivity.this, "Enter your Email First", Toast.LENGTH_LONG).show();
+            } else{
+                FirebaseAuth.getInstance().sendPasswordResetEmail(binding.loginEmail.getText().toString())
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(SigninActivity.this, "Password Reset Email sent successfully check your email...", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(SigninActivity.this, "You are not a user sign up instead.", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(SigninActivity.this, SignUpActivity.class));
+                        });
+            }
         });
+        binding.toSignUpPage.setOnClickListener(v -> startActivity(new Intent(SigninActivity.this, SignUpActivity.class)));
     }
 
     private void SignInUsingGoogle() {
         binding.progressBar.setVisibility(View.VISIBLE);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         someActivityResultLauncher.launch(signInIntent);
+        binding.progressBar.setVisibility(View.INVISIBLE);
     }
 
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-                    // There are no request codes
                     Intent data = result.getData();
                     Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
                     try {
                         task.getResult(ApiException.class);
                         NavigationToNextActivity();
+                        binding.progressBar.setVisibility(View.INVISIBLE);
                     } catch (ApiException e){
                         binding.progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(SigninActivity.this, "Something went wrong" + e.getMessage(), Toast.LENGTH_LONG).show();

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -19,29 +18,23 @@ import com.example.enduser.databinding.ActivityOtpVerificationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class OtpVerificationActivity extends AppCompatActivity {
     ActivityOtpVerificationBinding binding;
     private String verificationID = "";
-    private String username = "", email = "", password = "", mobile = "", code = "";
+    private String username = "", email = "", password = "", mobile = "";
     private FirebaseAuth mAuth;
-    private String userOTP = "", userImage;
+    private String userOTP = "";
     private ProgressDialog dialog;
     private ProgressDialog pd;
-
-    private FirebaseStorage storage;
-    private FirebaseDatabase mbase;
-
 
 
     @Override
@@ -171,8 +164,6 @@ public class OtpVerificationActivity extends AppCompatActivity {
 
     private void InitializeFields() {
         mAuth = FirebaseAuth.getInstance();
-        storage = FirebaseStorage.getInstance();
-        mbase = FirebaseDatabase.getInstance();
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Wait Verification is important!!!");
@@ -200,7 +191,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private final PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
@@ -238,7 +229,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
 
         pd = new ProgressDialog(this);
         pd.setTitle("Creating your account!!!");
-        pd.setProgressStyle(pd.STYLE_SPINNER);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage("Wait : ");
         pd.setCancelable(false);
         pd.setCanceledOnTouchOutside(false);
@@ -267,22 +258,19 @@ public class OtpVerificationActivity extends AppCompatActivity {
     private void saveUserDetail() {
         Customer customer = new Customer(username, email, password, mobile);
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_SHORT).show();
-                            String id = task.getResult().getUser().getUid();
-                            FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(id).setValue(customer)
-                                    .addOnCompleteListener(task1 -> {
-                                        if(task1.isSuccessful()){
-                                            Toast.makeText(getApplicationContext(), "Customer Created", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Unable to create account", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Toast.makeText(getApplicationContext(), "Signed in", Toast.LENGTH_SHORT).show();
+                        String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
+                        FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(id).setValue(customer)
+                                .addOnCompleteListener(task1 -> {
+                                    if(task1.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Customer Created", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Unable to create account", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
