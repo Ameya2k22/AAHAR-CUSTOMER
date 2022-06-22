@@ -98,4 +98,6 @@
     <string name="payment">Payment</string>
 
     <string name="not_rated_yet">Not rated yet!</string>
+    <string name="users">Users</string>
+    <string name="notification">Notification</string>
 </resources>
