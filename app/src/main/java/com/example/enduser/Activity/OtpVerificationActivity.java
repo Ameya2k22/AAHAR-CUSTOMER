@@ -181,6 +181,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber) {
+        Toast.makeText(OtpVerificationActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber("+91" + phoneNumber)
