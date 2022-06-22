@@ -52,7 +52,6 @@ public class AddMessFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentAddMessBinding.inflate(inflater, container, false);
         auth = FirebaseAuth.getInstance();
-<<<<<<< HEAD
         
         binding.create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +59,7 @@ public class AddMessFragment extends Fragment {
                 FirebaseDatabase.getInstance().getReference().child("Customer").child("Details").child(FirebaseAuth.getInstance().getUid()).child("phone_no").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
+                        if(snapshot.exists()) {
                             phone = snapshot.getValue(String.class);
                             String ownerName_val = binding.ownerName.getText().toString();
                             String messName_val = binding.messName.getText().toString();
@@ -68,12 +67,9 @@ public class AddMessFragment extends Fragment {
                             String messEmail_val = binding.messEmail.getText().toString();
                             String monthlyPrice_val = binding.monthlyPrice.getText().toString();
                             String specialDishes_val = binding.specialDishes.getText().toString();
-=======
->>>>>>> 3d6cd72a530e616811d9895ee968a2312dc16013
+                        }
+                    }
 
-        binding.create.setOnClickListener(v -> createNewMess());
-
-<<<<<<< HEAD
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -82,8 +78,6 @@ public class AddMessFragment extends Fragment {
                 createNewMess();
             }
         });
-=======
->>>>>>> 3d6cd72a530e616811d9895ee968a2312dc16013
 
         binding.messImage.setOnClickListener(v -> {
             Intent imageIntent = new Intent();

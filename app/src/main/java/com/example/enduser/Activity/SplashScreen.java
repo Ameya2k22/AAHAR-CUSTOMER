@@ -27,8 +27,6 @@ public class SplashScreen extends AppCompatActivity {
         image = findViewById(R.id.image);
         image.animate().translationY((float) height/2).setDuration(2000);
 
-
-<<<<<<< HEAD
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
@@ -36,8 +34,5 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(i);
             }
         },5000);
-=======
-        new Handler().postDelayed(() -> startActivity(new Intent(SplashScreen.this, SigninActivity.class)),5000);
->>>>>>> 3d6cd72a530e616811d9895ee968a2312dc16013
     }
 }

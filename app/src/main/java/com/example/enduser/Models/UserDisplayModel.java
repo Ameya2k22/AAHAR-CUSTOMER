@@ -2,16 +2,24 @@ package com.example.enduser.Models;
 
 
 public class UserDisplayModel {
-//    int image;
-    String name, phone_no, email;
+    String image;
+    String name, phone_no, email, userID;
 
     public UserDisplayModel(){}
 
-    public UserDisplayModel( String name, String phone_no, String email) {
-//        this.image = image;
+    public UserDisplayModel(String image, String name, String phone_no, String email) {
+        this.image = image;
         this.name = name;
         this.phone_no = phone_no;
         this.email = email;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getPhone_no() {
@@ -22,13 +30,13 @@ public class UserDisplayModel {
         this.phone_no = phone_no;
     }
 
-//    public int getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(int image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;

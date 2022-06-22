@@ -80,6 +80,7 @@ public class StudentFragment extends Fragment {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 UserDisplayModel userDisplayModel = snapshot.getValue(UserDisplayModel.class);
+                                userDisplayModel.setUserID(snapshot.getKey());
                                 studentList.add(userDisplayModel);
                                 userDisplayAdapter.notifyDataSetChanged();
                             }

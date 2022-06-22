@@ -1,6 +1,7 @@
 package com.example.enduser.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.enduser.Models.UserDisplayModel;
 import com.example.enduser.R;
 import com.example.enduser.databinding.SingleUserActivityBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.myViewHolder>{
@@ -39,6 +46,18 @@ public class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.
         holder.binding.name.setText(user.getName());
         holder.binding.mobile.setText(user.getPhone_no());
         holder.binding.email.setText(user.getEmail());
+        FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUserID()).child("coverPhoto").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String image = snapshot.getValue(String.class);
+                Picasso.get().load(image).placeholder(R.drawable.aahar_logo).into(holder.binding.userProfileImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         holder.binding.attendancebtn.setOnClickListener(v -> ShowAttendance());
 
