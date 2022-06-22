@@ -50,16 +50,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 if(snapshot.exists()){
                     String name = snapshot.getValue(String.class);
                     if(type.equals("Review")){
-                        holder.notificationText.setText(name+" posted  a review");
+                        holder.notificationBy.setText(name);
+                        holder.notificationMessage.setText("Posted Review");
                     }
                     else if(type.equals("Payment")){
-                        holder.notificationText.setText(name+" payed the mess fees");
+                        holder.notificationBy.setText(name);
+                        holder.notificationMessage.setText("Payed the fees");
                     }
                     else if(type.equals("Joined")){
-                        holder.notificationText.setText(name+" joined the mess");
+                        holder.notificationBy.setText(name);
+                        holder.notificationMessage.setText("Joined the Mess");
                     }
                     else if(type.equals("Ratings")){
-                        holder.notificationText.setText(name+" posted ratings to your app");
+                        holder.notificationBy.setText(name);
+                        holder.notificationMessage.setText("Posted Ratings");
                     }
                 }
                 else{
@@ -81,10 +85,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class VH extends RecyclerView.ViewHolder {
-        TextView notificationText;
+
+        TextView notificationBy, notificationMessage;
+
         public VH(@NonNull View itemView) {
             super(itemView);
-            notificationText = itemView.findViewById(R.id.notificationText);
+            notificationMessage = itemView.findViewById(R.id.notification_message);
+            notificationBy = itemView.findViewById(R.id.notification_by);
         }
     }
 }
